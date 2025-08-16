@@ -646,15 +646,15 @@
                     <i class="fas fa-hand-holding"></i>
                     <span>Issue Books</span>
                 </div>
-                <div class="nav-btn" data-target="sendReminder">
+                <div class="nav-btn" data-target="sendReminder" id="sendReminder">
                     <i class="fas fa-bell"></i>
                     <span>Send Reminder</span>
                 </div>
-                <div class="nav-btn" data-target="returnBooks">
+                <div class="nav-btn" data-target="returnBooks" id="returnBooks">
                     <i class="fas fa-undo"></i>
                     <span>Return Books</span>
                 </div>
-                <div class="nav-btn" data-target="viewTransactions">
+                <div class="nav-btn" data-target="viewTransactions" id="getTransactions">
                     <i class="fas fa-history"></i>
                     <span>View Transactions</span>
                 </div>
@@ -703,7 +703,7 @@
                     </div>
                 </div>
 
-                <h3 class="section-title">
+                <!-- <h3 class="section-title">
                     <i class="fas fa-history"></i> Recent Activity
                 </h3>
                 <div class="table-container">
@@ -743,7 +743,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
 
             <!-- Student Registration Form -->
@@ -897,46 +897,11 @@
                                 <th>ISBN</th>
                                 <th>Category</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                <!-- <th>Actions</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>The Silent Patient</td>
-                                <td>Alex Michaelides</td>
-                                <td>978-1250301697</td>
-                                <td>Fiction</td>
-                                <td><span class="status-badge available">Available</span></td>
-                                <td>
-                                    <button class="btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                        <i class="fas fa-eye"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Atomic Habits</td>
-                                <td>James Clear</td>
-                                <td>978-0735211292</td>
-                                <td>Self-Help</td>
-                                <td><span class="status-badge checked-out">Checked Out</span></td>
-                                <td>
-                                    <button class="btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                        <i class="fas fa-eye"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Educated: A Memoir</td>
-                                <td>Tara Westover</td>
-                                <td>978-0399590504</td>
-                                <td>Biography</td>
-                                <td><span class="status-badge available">Available</span></td>
-                                <td>
-                                    <button class="btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                        <i class="fas fa-eye"></i> View
-                                    </button>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td>Where the Crawdads Sing</td>
                                 <td>Delia Owens</td>
@@ -1041,19 +1006,14 @@
                                 <label for="issueMember">Member</label>
                                 <select id="issueMember" required>
                                     <option value="">Select Member</option>
-                                    <option value="S2023001">Sarah Johnson (Student)</option>
-                                    <option value="M2023004">John Smith (Faculty)</option>
-                                    <option value="M2023005">Lisa Brown (Public)</option>
                                 </select>
+                                <!-- <input type="text" id="memberType" required hidden> -->
                             </div>
                             <div class="form-group">
                                 <label for="issueBook">Book</label>
                                 <select id="issueBook" required>
                                     <option value="">Select Book</option>
-                                    <option value="B1001">The Silent Patient</option>
-                                    <option value="B1002">Atomic Habits</option>
-                                    <option value="B1003">Educated: A Memoir</option>
-                                    <option value="B1004">Where the Crawdads Sing</option>
+
                                 </select>
                             </div>
                         </div>
@@ -1087,9 +1047,6 @@
                             <label for="reminderMember">Member</label>
                             <select id="reminderMember" required>
                                 <option value="">Select Member</option>
-                                <option value="S2023001">Sarah Johnson (Student)</option>
-                                <option value="M2023004">John Smith (Faculty)</option>
-                                <option value="M2023005">Lisa Brown (Public)</option>
                             </select>
                         </div>
 
@@ -1117,19 +1074,12 @@
                                 <label for="returnMember">Member</label>
                                 <select id="returnMember" required>
                                     <option value="">Select Member</option>
-                                    <option value="S2023001">Sarah Johnson (Student)</option>
-                                    <option value="M2023004">John Smith (Faculty)</option>
-                                    <option value="M2023005">Lisa Brown (Public)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="returnBook">Book</label>
                                 <select id="returnBook" required>
                                     <option value="">Select Book</option>
-                                    <option value="B1001">The Silent Patient</option>
-                                    <option value="B1002">Atomic Habits</option>
-                                    <option value="B1003">Educated: A Memoir</option>
-                                    <option value="B1004">Where the Crawdads Sing</option>
                                 </select>
                             </div>
                         </div>
@@ -1158,11 +1108,12 @@
                     <table class="books-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
                                 <th>Member</th>
+                                <th>Member Type</th>
                                 <th>Book</th>
-                                <th>Type</th>
+                                <th>Issue Date</th>
                                 <th>Due Date</th>
+                                <th>Return Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -1350,23 +1301,12 @@
                 });
         });
 
-        document.getElementById('issueForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Book issued successfully!');
-            this.reset();
-        });
-
         document.getElementById('reminderForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Reminder sent successfully!');
             this.reset();
         });
 
-        document.getElementById('returnForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Book return processed successfully!');
-            this.reset();
-        });
 
         // Search functionality
         document.getElementById('bookSearch').addEventListener('input', function () {
@@ -1550,6 +1490,196 @@
 
         });
 
+        // Add data to Transaction Table
+        document.getElementById('getTransactions').addEventListener('click', function () {
+            // Replace this URL with your actual API endpoint
+            fetch('http://localhost:8080/transaction/getAllTransactions')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    const tbody = document.querySelector('#viewTransactions .books-table tbody');
+                    tbody.innerHTML = ''; // Clear existing rows
+
+                    data.forEach((transaction, index) => {
+                        const row = document.createElement('tr');
+                        row.setAttribute('data-id', transaction.id);
+                        row.setAttribute('data-member', transaction.member);
+                        row.setAttribute('data-memberType', transaction.memberType);
+                        row.setAttribute('data-issuedBook', transaction.issuedBook);
+                        row.setAttribute('data-issuedDate', transaction.issuedDate);
+                        row.setAttribute('data-dueDate', transaction.dueDate);
+                        row.setAttribute('data-returnDate', transaction.returnDate);
+                        row.setAttribute('data-status', transaction.status);
+
+
+                        row.innerHTML = `
+                    <td>${transaction.member}</td>
+                    <td>${transaction.memberType}</td>
+                    <td>${transaction.issuedBook}</td>
+                    <td>${transaction.issuedDate}</td>
+                    <td>${transaction.dueDate}</td>
+                    <td>${transaction.returnDate}</td>
+                    <td>${transaction.status}</td>
+                `;
+
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching books:', error);
+                    const tbody = document.querySelector('#student-container .books-table tbody');
+                    tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 20px;">No data available</td>
+                    </tr>
+                    `;
+                });
+        });
+
+
+        // Update Issue Book Member Dropdown
+        document.getElementById('issueBooks').addEventListener('click', function () {
+            const memberSelect = document.getElementById('issueMember');
+            const bookSelect = document.getElementById('issueBook');
+
+
+            Promise.all([
+                fetch('http://localhost:8080/getAllStudents').then(res => res.json()),
+                fetch('http://localhost:8080/getAllMembers').then(res => res.json()),
+                fetch('http://localhost:8080/getAllBooks').then(res => res.json())
+            ])
+                .then(([students, members, books]) => {
+                    const combinedOptions = [];
+
+                    // Add student options
+                    students.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.memberId || student.id; // Use memberId if you have one like S2023001
+                        option.textContent = `${student.name} (Student)`;
+                        combinedOptions.push(option);
+                    });
+                    // Add member options
+                    members.forEach(member => {
+                        const option = document.createElement('option');
+                        option.value = member.memberId || member.id; // Assuming M2023004-style IDs
+                        option.textContent = `${member.name} (${member.type})`; // e.g., Faculty, Public
+                        combinedOptions.push(option);
+
+
+                    });
+                    console.log(books);
+                    // Books Options
+                    books.forEach(book => {
+                        const option = document.createElement('option');
+                        option.value = book.title; // Assuming M2023004-style IDs
+                        option.textContent = `${book.title}`; // e.g., Faculty, Public
+                        bookSelect.appendChild(option);
+                    });
+
+                    // Append options to the select element
+                    combinedOptions.forEach(option => {
+                        memberSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching students/members:', error);
+                    alert('Failed to load members.');
+                });
+        });
+
+        // Update Return Book Member Dropdown
+        document.getElementById('returnBooks').addEventListener('click', function () {
+            const memberSelect = document.getElementById('returnMember');
+            const bookSelect = document.getElementById('returnBook');
+
+
+            Promise.all([
+                fetch('http://localhost:8080/getAllStudents').then(res => res.json()),
+                fetch('http://localhost:8080/getAllMembers').then(res => res.json()),
+                fetch('http://localhost:8080/getAllBooks').then(res => res.json())
+            ])
+                .then(([students, members, books]) => {
+                    const combinedOptions = [];
+
+                    // Add student options
+                    students.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.name; // Use memberId if you have one like S2023001
+                        option.textContent = `${student.name} (Student)`;
+                        combinedOptions.push(option);
+                    });
+                    // Add member options
+                    members.forEach(member => {
+                        const option = document.createElement('option');
+                        option.value = member.name; // Assuming M2023004-style IDs
+                        option.textContent = `${member.name} (${member.type})`; // e.g., Faculty, Public
+                        combinedOptions.push(option);
+
+
+                    });
+                    console.log(books);
+                    // Books Options
+                    books.forEach(book => {
+                        const option = document.createElement('option');
+                        option.value = book.title; // Assuming M2023004-style IDs
+                        option.textContent = `${book.title}`; // e.g., Faculty, Public
+                        bookSelect.appendChild(option);
+                    });
+
+                    // Append options to the select element
+                    combinedOptions.forEach(option => {
+                        memberSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching students/members:', error);
+                    alert('Failed to load members.');
+                });
+        });
+
+        // Update Send Reminder Member Dropdown
+        document.getElementById('sendReminder').addEventListener('click', function () {
+            const memberSelect = document.getElementById('reminderMember');
+
+            Promise.all([
+                fetch('http://localhost:8080/getAllStudents').then(res => res.json()),
+                fetch('http://localhost:8080/getAllMembers').then(res => res.json())
+            ])
+                .then(([students, members]) => {
+                    const combinedOptions = [];
+
+                    // Add student options
+                    students.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.memberId || student.id; // Use memberId if you have one like S2023001
+                        option.textContent = `${student.name} (Student)`;
+                        combinedOptions.push(option);
+                    });
+                    console.log(members);
+                    // Add member options
+                    members.forEach(member => {
+                        const option = document.createElement('option');
+                        option.value = member.memberId || member.id; // Assuming M2023004-style IDs
+                        option.textContent = `${member.name} (${member.type})`; // e.g., Faculty, Public
+                        combinedOptions.push(option);
+                    });
+
+                    // Append options to the select element
+                    combinedOptions.forEach(option => {
+                        memberSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching students/members:', error);
+                    alert('Failed to load members.');
+                });
+        });
+
         // Update Student Info
         document.getElementById('studentUpdateForm').addEventListener('submit', function (e) {
             e.preventDefault(); // Prevents the default form submission behavior (page reload)
@@ -1591,6 +1721,92 @@
                 });
         });
 
+        // Return Book
+        document.getElementById('returnForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevents the default form submission behavior (page reload)
+
+            // Get data from each input field by its ID
+            const studentData = {
+                member: document.getElementById('returnMember').value,
+                issuedBook: document.getElementById('returnBook').value,
+                returnDate: document.getElementById('returnDate').value,
+                status: "RETURNED"
+            };
+
+            // Now, the `studentData` object holds all the form data.
+            // You can console.log it to verify or send it to a server.
+            console.log(studentData);
+
+            // You can now proceed to send this data to your backend API using fetch()
+            // Example:
+            fetch(`http://localhost:8080/transaction/returnBook`, {
+                method: 'PUT', // Or POST, depending on your API
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(studentData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    this.reset();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Failed to update student data.');
+                });
+        });
+
+
+        // Get Issue Form Data
+        document.getElementById('issueForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevents the default form submission behavior (page reload)
+
+            const getMemberData = (index)=>{
+                    const select = document.getElementById('issueMember');
+                    // console.log(select);
+
+
+                    const selectedText = select.options[select.selectedIndex].text;
+                    console.log(selectedText);
+                    const match = selectedText.split(" (")[index];
+                    console.log("Match: "+match);
+                    return match;
+                };
+            // Get data from each input field by its ID
+            const studentData = {
+                member: getMemberData(0),
+                issuedBook: document.getElementById('issueBook').value,
+                issuedDate: document.getElementById('issueDate').value,
+                dueDate: document.getElementById('dueDate').value,
+                status: "ACTIVE",
+                memberType: getMemberData(1).replace(')','')
+            };
+
+            // Now, the `studentData` object holds all the form data.
+            // You can console.log it to verify or send it to a server.
+            console.log(studentData);
+
+            // You can now proceed to send this data to your backend API using fetch()
+            // Example:
+            fetch(`http://localhost:8080/transaction/issueBook`, {
+                method: 'POST', // Or POST, depending on your API
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(studentData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Student data updated successfully!');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Failed to update student data.');
+                });
+        });
+
         // Add data to Books Table
         document.getElementById('getBooks').addEventListener('click', function () {
             // Replace this URL with your actual API endpoint
@@ -1614,16 +1830,16 @@
                     <td>${book.isbn}</td>
                     <td>${book.category}</td>
                     <td>
-                        <span class="status-badge ${book.status === 'available' ? 'available' : 'checked-out'}">
-                            ${book.status === 'available' ? 'Available' : 'Checked Out'}
+                        <span class="status-badge ${book.status.toLowerCase() === 'available' ? 'available' : 'checked-out'}">
+                            ${book.status.toLowerCase() === 'available' ? 'Available' : 'Checked Out'}
                         </span>
                     </td>
-                    <td>
-                        <button class="btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                            <i class="fas fa-eye"></i> View
-                        </button>
-                    </td>
-                `;
+                    `;
+                        // <td>
+                        //     <button class="btn" style="padding: 8px 15px; font-size: 0.9rem;">
+                        //         <i class="fas fa-eye"></i> View
+                        //     </button>
+                        // </td>
 
                         tbody.appendChild(row);
                     });
